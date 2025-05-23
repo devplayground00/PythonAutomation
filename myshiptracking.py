@@ -12,6 +12,7 @@ class SafeChrome(uc.Chrome):
     def __del__(self):
         pass  # Prevent undetected_chromedriver from trying to quit again
 
+url = "https://www.myshiptracking.com/"
 
 def scrape_vessel_data(destination_keyword: str, timeout: int = 60):
     options = uc.ChromeOptions()
@@ -19,7 +20,7 @@ def scrape_vessel_data(destination_keyword: str, timeout: int = 60):
     driver.maximize_window()
 
     try:
-        driver.get("https://www.myshiptracking.com/")
+        driver.get(url)
 
         WebDriverWait(driver, timeout).until(
             expected_conditions.element_to_be_clickable((By.XPATH, '//*[@id="myst-dropdown"]/ul/li[2]/a'))
